@@ -1,0 +1,20 @@
+[
+  {
+    "id": "44ae9050",
+    "name": "证券时报",
+    "url": "https://www.stcn.com/",
+    "source": "user",
+    "enabled": true,
+    "deleted_system": true,
+    "created_at": "2026-07-27T02:08:56.045889+00:00"
+  },
+  {
+    "id": "928d31af",
+    "name": "每经网",
+    "url": "https://www.nbd.com.cn/",
+    "source": "user",
+    "enabled": true,
+    "deleted_system": true,
+    "created_at": "2026-07-27T02:08:56.754524+00:00"
+  }
+]

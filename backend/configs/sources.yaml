@@ -1,0 +1,24 @@
+# 数据源配置
+
+newsapi:
+  enabled: true
+  base_url: "https://newsapi.org/v2"
+  # 中英文双语搜索，避免英文关键词在中文源中搜不到
+  languages: ["zh", "en"]
+  page_size: 25
+  # 默认查询主题（用户配置主题后将被覆盖）
+  query_topics: ["finance", "technology", "economy", "sports", "politics"]
+
+crawlers:
+  enabled: true
+  targets:
+    - name: "证券时报"
+      url: "https://www.stcn.com/"
+    - name: "每经网"
+      url: "https://www.nbd.com.cn/"
+
+# 开发用模拟数据 — 当真实数据源不可用时，提供模拟新闻供管道调试
+# 生产环境自动禁用
+mock:
+  enabled: false
+  article_count: 8

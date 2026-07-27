@@ -1,0 +1,145 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Serif+Display&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ========== 设计令牌 ========== */
+:root {
+  --color-bg: #0a0e14;
+  --color-surface: #141920;
+  --color-panel: #1a1f2a;
+  --color-border: #2a3040;
+  --color-hover: #1e2433;
+  --color-text: #d4d9e0;
+  --color-text-muted: #6b7280;
+  --color-text-highlight: #e8edf4;
+  --color-blue: #2196F3;
+  --color-cyan: #00BCD4;
+  --color-amber: #FFB300;
+  --color-green: #4CAF50;
+  --color-red: #FF5252;
+  --color-purple: #AB47BC;
+}
+
+/* ========== 基础样式 ========== */
+html {
+  font-family: 'DM Sans', system-ui, sans-serif;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ========== 滚动条 ========== */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3a4050;
+}
+
+/* ========== 选中文本 ========== */
+::selection {
+  background: rgba(33, 150, 243, 0.3);
+  color: var(--color-text-highlight);
+}
+
+/* ========== 组件工具类 ========== */
+@layer components {
+  /* 面板卡片 */
+  .panel {
+    @apply bg-terminal-panel border border-terminal-border rounded-lg;
+  }
+
+  .panel-hover {
+    @apply panel transition-all duration-200 hover:border-accent-blue/30 hover:bg-terminal-hover;
+  }
+
+  /* 发光边框（激活状态） */
+  .glow-border {
+    box-shadow: 0 0 12px rgba(33, 150, 243, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.03);
+    border-color: rgba(33, 150, 243, 0.4);
+  }
+
+  /* 数据标签 */
+  .data-label {
+    @apply text-[10px] uppercase tracking-widest text-data-muted font-medium;
+  }
+
+  .data-value {
+    @apply font-mono text-data-highlight font-semibold tabular-nums;
+  }
+
+  /* 渐变进度条 */
+  .gradient-progress {
+    background: linear-gradient(90deg, var(--color-blue), var(--color-cyan), var(--color-blue));
+    background-size: 200% 100%;
+    animation: progressBar 2s ease-in-out infinite;
+  }
+
+  /* 状态点 */
+  .status-dot {
+    @apply inline-block w-2 h-2 rounded-full;
+  }
+  .status-dot-active {
+    @apply status-dot bg-accent-green;
+    box-shadow: 0 0 6px rgba(76, 175, 80, 0.6);
+  }
+  .status-dot-warning {
+    @apply status-dot bg-accent-amber;
+    box-shadow: 0 0 6px rgba(255, 179, 0, 0.6);
+  }
+  .status-dot-error {
+    @apply status-dot bg-accent-red;
+    box-shadow: 0 0 6px rgba(255, 82, 82, 0.6);
+  }
+
+  /* 网格背景纹理 */
+  .bg-grid {
+    background-image:
+      linear-gradient(rgba(42, 48, 64, 0.3) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(42, 48, 64, 0.3) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+}
+
+/* ========== 动画 ========== */
+@keyframes progressBar {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-slide {
+  animation: fadeSlideIn 0.4s ease-out forwards;
+}
+
+/* 延迟动画 */
+.stagger-1 { animation-delay: 0.05s; }
+.stagger-2 { animation-delay: 0.1s; }
+.stagger-3 { animation-delay: 0.15s; }
+.stagger-4 { animation-delay: 0.2s; }
+.stagger-5 { animation-delay: 0.25s; }
+.stagger-6 { animation-delay: 0.3s; }

@@ -1,0 +1,46 @@
+# 应用配置
+app:
+  name: "智览"
+  version: "0.1.0"
+
+# 采集配置
+collection:
+  interval_hours: 2           # 采集间隔（小时）
+  request_timeout: 120         # 单次请求超时（秒）— 爬虫逐篇抓取需较长时间
+  max_articles_per_source: 50  # 每个数据源每次最多采集文章数
+  retry_max: 3                 # 采集失败最大重试次数
+  retry_backoff_base: 2        # 重试退避基数（秒）
+
+# 去重配置
+dedup:
+  simhash_threshold: 12         # SimHash 汉明距离阈值（中文适配，<12 → 相似度 > 0.85）
+  embedding_threshold: 0.92    # 语义相似度阈值
+  bloom_filter_capacity: 100000
+  bloom_filter_error_rate: 0.001
+
+# 聚类配置
+cluster:
+  hdbscan_min_cluster_size: 3
+  hdbscan_min_samples: 1
+  pca_dimensions: 128          # PCA 降维目标维度（null 则不降维）
+
+# RAG 配置
+rag:
+  retrieval_top_k_knn: 20      # 向量检索召回数
+  retrieval_top_k_bm25: 20     # BM25 检索召回数
+  rerank_top_k: 8              # Rerank 后保留数
+  max_context_tokens: 8000     # 上下文最大 token 数
+
+# 研报生成配置
+report:
+  max_retry: 3                 # 审核不通过最大重试次数
+  sections:                     # 研报结构
+    - background
+    - analysis
+    - outlook
+    - risk
+
+# 降级配置
+fallback:
+  use_expired_cache: true      # 失败时使用过期缓存
+  cache_ttl_grace: 3600        # 过期缓存宽限期（秒）
